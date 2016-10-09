@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+    beanstalkd:
+        image: webplates/beanstalkd:latest-alpine
+    monitor:
+        image: agaveapi/beanstalkd-console
+        links:
+            - beanstalkd
+        environment:
+           BEANSTALKD_HOST: beanstalkd
+           BEANSTALKD_PORT: 11300
+        ports:
+            - "8123:80"
+    php:
+        image: php:7.0
+        links:
+            - beanstalkd
+        volumes:
+            - ./:/app
+        working_dir: /app

@@ -1,0 +1,29 @@
+<?php
+
+require __DIR__.'/../bootstrap.php';
+
+use BGPHP\BgProcessing\Command\RegisterUser;
+use Bernard\Consumer;
+use Bernard\Router\SimpleRouter;
+use League\Tactician\Bernard\Receiver\SameBusReceiver;
+use League\Tactician\Bernard\QueueableCommand;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
+// Wire the command bus into Bernard's routing system
+$receiver = new SameBusReceiver($commandBus);
+$router = new SimpleRouter();
+
+// HACK: Autoload class so it gets declared
+class_exists(RegisterUser::class, true);
+
+foreach(get_declared_classes() as $class) {
+    if(is_a($class, QueueableCommand::class, true)) {
+        $router->add(substr($class, strrpos($class, '\\') + 1), $receiver);
+    }
+}
+
+$queue = $queueFactory->create('register-user');
+
+// Finally, create the Bernard consumer that runs through the pending queue
+$consumer = new Consumer($router, new EventDispatcher());
+$consumer->consume($queue);

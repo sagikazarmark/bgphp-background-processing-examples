@@ -1,0 +1,22 @@
+{
+    "name": "bgphp/bgprocessing",
+    "authors": [
+        {
+            "name": "Márk Sági-Kazár",
+            "email": "mark.sagikazar@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "BGPHP\\BgProcessing\\": "src/"
+        }
+    },
+    "require": {
+        "bernard/bernard": "dev-master",
+        "pda/pheanstalk": "^3.1",
+        "league/tactician-bernard": "^0.5.0",
+        "league/tactician": "^1.0"
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
+}

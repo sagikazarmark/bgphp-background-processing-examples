@@ -1,0 +1,9 @@
+<?php
+
+require __DIR__.'/../bootstrap.php';
+
+use BGPHP\BgProcessing\Command\RegisterUser;
+
+$command = new RegisterUser('mark.sagikazar+spam_here@gmail.com', 'secret');
+
+$commandBus->handle($command);
