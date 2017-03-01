@@ -21,7 +21,6 @@ $driver = new PheanstalkDriver($pheanstalk);
 $normalizer = new AggregateNormalizer([
     new RegisterUserNormalizer(),
     new \Bernard\Normalizer\EnvelopeNormalizer(),
-    new \Bernard\Normalizer\DefaultMessageNormalizer(),
 ]);
 
 $queueFactory = new \Bernard\QueueFactory\PersistentFactory($driver, new \Bernard\Serializer($normalizer));
