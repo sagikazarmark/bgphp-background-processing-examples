@@ -10,7 +10,8 @@ use League\Tactician\Bernard\QueueMiddleware;
 use League\Tactician\CommandBus;
 use Bernard\Driver\PheanstalkDriver;
 use Normalt\Normalizer\AggregateNormalizer;
-use Pheanstalk\Pheanstalk;use League\Tactician\Handler\Locator\InMemoryLocator;
+use Pheanstalk\Pheanstalk;
+use League\Tactician\Handler\Locator\InMemoryLocator;
 use League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor;
 use League\Tactician\Handler\MethodNameInflector\HandleClassNameInflector;
 
